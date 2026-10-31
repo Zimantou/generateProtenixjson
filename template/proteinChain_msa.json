@@ -1,0 +1,11 @@
+{
+    "proteinChain": {
+        "sequence": "{{sequence}}",
+        "count": 1,
+        "id": [],
+        "msa": {
+            "precomputed_msa_dir": "{{msa_dir}}",
+            "pairing_db": "uniref100"
+        }
+    }
+}
