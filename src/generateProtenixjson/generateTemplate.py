@@ -11,9 +11,9 @@ JSON 结构由 template/ 下的模板文件决定，
 import json
 from pathlib import Path
 
-from args import parse
-import readers as readers
-import templates as templates
+from .args import parse
+from . import readers
+from . import templates
 
 
 # ---------- 单条参数 → 序列条目 ----------

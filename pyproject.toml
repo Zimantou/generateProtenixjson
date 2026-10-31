@@ -3,9 +3,17 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "generateforprotenix"
+name = "generateProtenixjson"
 version = "0.1.0"
 
 [project.scripts]
-# 命令名 = "模块路径:函数名"
-generateforprotenix = "src.generateTemplate:main"
+generateforprotenix = "generateProtenixjson.generateTemplate:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.data-files]
+"template" = ["template/*.json"]

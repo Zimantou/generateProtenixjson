@@ -8,7 +8,8 @@
 import json
 from pathlib import Path
 
-TEMPLATE_DIR = Path(__file__).parent.parent / "template"
+# __file__ 在 src/generateforprotenix/，向上两级到项目根
+TEMPLATE_DIR = Path(__file__).resolve().parent.parent.parent / "template"
 
 # 占位符格式：{{key}}（双花括号包围任意非空 key）
 _PLACEHOLDER_PREFIX = "{{"
