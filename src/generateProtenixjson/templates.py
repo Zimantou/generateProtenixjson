@@ -1,15 +1,18 @@
 """
 模板加载与占位符替换。
 
-所有 JSON 结构由 template/ 目录下的模板文件决定，
+所有 JSON 结构由包内 template/ 目录下的模板文件决定，
 本模块不硬编码任何 JSON 字段——模板改了，输出结构就跟着改。
+
+用 importlib.resources 定位包内资源，editable / wheel 两种安装模式
+都能正确找到 template/。
 """
 
 import json
-from pathlib import Path
+from importlib.resources import files
 
-# __file__ 在 src/generateforprotenix/，向上两级到项目根
-TEMPLATE_DIR = Path(__file__).resolve().parent.parent.parent / "template"
+# 包内 template/ 目录（importlib.resources 的 Traversable 对象）
+_TEMPLATE_DIR = files("generateProtenixjson").joinpath("template")
 
 # 占位符格式：{{key}}（双花括号包围任意非空 key）
 _PLACEHOLDER_PREFIX = "{{"
@@ -19,8 +22,8 @@ _PLACEHOLDER_SUFFIX = "}}"
 # ---------- 模板加载 ----------
 
 def load_json(name: str) -> dict | list:
-    """从 template/ 目录加载一个 JSON 模板。"""
-    path = TEMPLATE_DIR / name
+    """从包内 template/ 目录加载一个 JSON 模板。"""
+    path = _TEMPLATE_DIR.joinpath(name)
     return json.loads(path.read_text(encoding="utf-8"))
 
 

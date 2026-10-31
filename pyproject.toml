@@ -15,5 +15,5 @@ package-dir = {"" = "src"}
 [tool.setuptools.packages.find]
 where = ["src"]
 
-[tool.setuptools.data-files]
-"template" = ["template/*.json"]
+[tool.setuptools.package-data]
+"generateProtenixjson" = ["template/*.json"]
